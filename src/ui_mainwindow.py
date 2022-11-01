@@ -189,6 +189,26 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.mostrar_pushButton, 1, 2, 1, 1)
 
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_3 = QWidget()
+        self.tab_3.setObjectName(u"tab_3")
+        self.gridLayout_4 = QGridLayout(self.tab_3)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.dibujarPushButton = QPushButton(self.tab_3)
+        self.dibujarPushButton.setObjectName(u"dibujarPushButton")
+
+        self.gridLayout_4.addWidget(self.dibujarPushButton, 2, 0, 1, 1)
+
+        self.limpiarPushBtn = QPushButton(self.tab_3)
+        self.limpiarPushBtn.setObjectName(u"limpiarPushBtn")
+
+        self.gridLayout_4.addWidget(self.limpiarPushBtn, 2, 1, 1, 1)
+
+        self.particulasView = QGraphicsView(self.tab_3)
+        self.particulasView.setObjectName(u"particulasView")
+
+        self.gridLayout_4.addWidget(self.particulasView, 0, 0, 1, 2)
+
+        self.tabWidget.addTab(self.tab_3, "")
 
         self.gridLayout_3.addWidget(self.tabWidget, 0, 0, 1, 1)
 
@@ -209,7 +229,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -243,6 +263,9 @@ class Ui_MainWindow(object):
         self.buscar_pushButton.setText(QCoreApplication.translate("MainWindow", u"Buscar", None))
         self.mostrar_pushButton.setText(QCoreApplication.translate("MainWindow", u"Mostrar", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Tabla", None))
+        self.dibujarPushButton.setText(QCoreApplication.translate("MainWindow", u"Dibujar", None))
+        self.limpiarPushBtn.setText(QCoreApplication.translate("MainWindow", u"Limpiar", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Page", None))
         self.menuArchivo.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
     # retranslateUi
 

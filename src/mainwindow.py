@@ -1,4 +1,4 @@
-from ui_mainwindow import Ui_MainWindow, QFileDialog, QMessageBox, QTableWidgetItem
+from ui_mainwindow import Ui_MainWindow, QFileDialog, QMessageBox, QTableWidgetItem, QPen, QColor, QGraphicsScene
 from PySide2.QtWidgets import QMainWindow
 from PySide2.QtCore import Slot
 from listaParticulas import listaParticula
@@ -22,6 +22,39 @@ class MainWindow(QMainWindow):
         """ Metodos para trabajar con la tabla """
         self.ui.mostrar_pushButton.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_id_tabla)
+
+        self.ui.dibujarPushButton.clicked.connect(self.dibujar)
+        self.ui.limpiarPushBtn.clicked.connect(self.limpiar)
+
+        self.scene = QGraphicsScene()
+        self.ui.particulasView.setScene(self.scene)
+
+    @Slot()
+    def dibujar(self):
+        """ Dibujamos todas las particulas a la vez """
+        for particula in self.__lista:
+            pen = QPen()
+            pen.setWidth(2)
+
+            color = QColor(particula.red, particula.green, particula.blue)
+            pen.setColor(color)
+
+            self.scene.addEllipse(float(particula.origen_x),
+                                  float(particula.origen_y), 3, 3, pen)
+            self.scene.addEllipse(float(particula.destino_x),
+                                  float(particula.destino_y), 3, 3, pen)
+            self.scene.addLine(float(particula.origen_x), float(particula.origen_y),
+                               float(particula.destino_x), float(particula.destino_y), pen)
+
+    def wheelEvent(self, event):
+        if event.delta() > 0:
+            self.ui.particulasView.scale(1.2, 1.2)
+            return
+        self.ui.particulasView.scale(0.8, 0.8)
+
+    @Slot()
+    def limpiar(self):
+        self.scene.clear()
 
     @Slot()
     def mostrar_tabla(self):
